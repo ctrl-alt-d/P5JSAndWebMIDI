@@ -46,7 +46,7 @@ https://github.com/Tonejs/MidiConvert
 function loadMidiFile()
 {   
     url = new URL(location);
-    file = "../assets/lanative.mid";
+    file = "assets/lanative.mid";
     MidiConvert.load(file, loadMidiFile2 );
 }
 
