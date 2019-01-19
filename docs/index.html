@@ -23,14 +23,19 @@
 	</head>
 	<body>
 		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+			<div class="slides" style="max-height: 90vh;">
+				<section>Midi</section>
+				<section>WebMidi</section>
+				<section>P5 JS</section>
 			</div>
+			<div class="p5" style="z-index: 10;" id="viz2"></div>
 		</div>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
+		<script src="js/MidiConvert.js"></script>
+		<script src="js/my_p5.js"></script>
 
 		<script>
 			// More info about config & dependencies:
