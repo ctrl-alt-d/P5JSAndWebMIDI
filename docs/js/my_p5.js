@@ -100,7 +100,7 @@ function calculaTecles()
 
     // tamanys
     amplada_tecla_blanca = windowWidth / numblanques;
-    alcada_tecla_blanca = amplada_tecla_blanca * 2;
+    alcada_tecla_blanca = amplada_tecla_blanca * ( windowWidth > windowHeight ? 2 : 7 );
     amplada_tecla_negra = 0.8 * amplada_tecla_blanca;
     alcada_tecla_negra = (4/6) * alcada_tecla_blanca;
     delta_negra = alcada_tecla_blanca - alcada_tecla_negra;
