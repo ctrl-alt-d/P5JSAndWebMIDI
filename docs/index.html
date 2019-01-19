@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>P5.js & WebMIDI</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-markdown>
+					<textarea data-template>
+						# P5 JS & WebMIDI
+				
+						![Processing Day](../assets/processingday.jpeg) <!-- .element height="30%" width="30%" style="border:1px solid;" -->
+
+						dani herrera         @ctrl-alt-d
+
+						( versió alpha de la presentació )
+
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## MIDI
+				
+						Musical Instrument Digital Interface
+					</textarea>
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							## Web MIDI
+	
+							Web MIDI (MIDI Support in Web Browsers)
+						</textarea>
+				</section>
+	
+				<section data-markdown>
+					<textarea data-template>
+						## JS
+
+						JavaScript.
+					</textarea>
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							## P5 JS
+	
+							Codi accessible.
+						</textarea>
+				</section>
+	
+
+				<section data-markdown>
+						<textarea data-template>
+							## Web Midi + P5 JS
+	
+							Let's GO!
+						</textarea>
+				</section>
+	
+				<section data-markdown>
+						<textarea data-template>
+							## Demo 0
+	
+							* Canvas P5 JS
+							* Text al canvas
+							* Capturar events Midi
+							* Visualització simple
+						</textarea>
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							## Demo 1
+	
+							* Pensar quina
+						</textarea>
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							## Demo 2
+	
+							* Pensar quina
+						</textarea>
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							## Fi
+	
+							dani herrera @ctrl-alt-d
+						</textarea>
+				</section>
+
+				</div>
+			<div class="p5" style="z-index: 10;" id="viz2"></div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="js/MidiConvert.js"></script>
+		<script src="js/my_p5.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
