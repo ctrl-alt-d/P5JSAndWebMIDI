@@ -16,7 +16,7 @@
 
       <div class="jumbotron mt-4">
         <h1 class="display-4">Test my Web Midi Instrument</h1>
-        <p class="lead">Plug your instrument. Press F5. Play notes.</p>
+        <p class="lead">Plug & unplug your instrument, play notes.</p>
         <hr class="my-4">
         <p>Just for academical purposes.</p>
         <a class="btn btn-primary btn-lg" href="./" role="button">Learn more</a>
@@ -24,38 +24,20 @@
     
       <div class="row">
   
-        <div class="col-12 col-lg-6">
-  
+        <div class="col-12">
           <div class="card">
             <div class="card-header">
-              Available Input Devices
+              Midi Devices:
             </div>
             <div class="card-body">
-              <ul id="input-devices"></ul>
+              <ul id="midi-devices"></ul>
             </div>
           </div>
-  
         </div>
-  
-        <div class="col-12 col-lg-6">
-  
-          <div class="card">
-            <div class="card-header">
-              Available Output Devices
-            </div>
-            <div class="card-body">
-              <ul id="output-devices"></ul>
-            </div>
-          </div>
-  
-        </div>
-  
       </div>
 
       <div class="row">
-
         <div class="col-12 mt-4">
-
           <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -69,12 +51,8 @@
             </tbody>
           </table>
         </div>
-
       </div>
-
     </div>
-
-
 
 
     <!-- Optional JavaScript -->
@@ -85,42 +63,58 @@
 
     <script>
     
-    var midi = null;  // global MIDIAccess object
-
     function onMIDISuccess( midiAccess ) {
-      midi = midiAccess;
       var inputs = midiAccess.inputs;
       var outputs = midiAccess.outputs;
 
-      console.log("Hi ha midi.");
-
-      for (let output of outputs.values()) {
-        name = output.name;
-        console.log(name);
+      for (let port of outputs.values() ) {
+        // Pinto la UI
+        let msg = port.state + " " + port.type + " " + port.name;
         let li = document.createElement("li");
-        let ul = document.getElementById("output-devices");
-        li.appendChild(document.createTextNode(name));
+        let ul = document.getElementById("midi-devices");
+        li.appendChild(document.createTextNode(msg));
         ul.appendChild(li);
       }
 
-      for (let input of inputs.values()) {
-        name = input.name;
-
-        console.log(name);
+      for (let port of inputs.values() ) {
+        // Pinto la UI
+        let msg = port.state + " " + port.type + " " + port.name;
         let li = document.createElement("li");
-        let ul = document.getElementById("input-devices");
-        li.appendChild(document.createTextNode(name));
+        let ul = document.getElementById("midi-devices");
+        li.appendChild(document.createTextNode(msg));
         ul.appendChild(li);
 
-        //què faig amb els missatges que arriben?
-        input.onmidimessage = getMIDIMessage;
-
+        // Funció delegada
+        port.onmidimessage = getMIDIMessage;
       }
 
+      // si fem plug d'algun dispositiu:
+      midiAccess.onstatechange = onMidiChange;
     }
 
-    function onMIDIFailure(msg) {
-      console.log( "Failed to get MIDI access - " + msg );
+    function onMidiChange(e)
+    {
+
+      // Posar-ho a la UI
+      let li = document.createElement("li");
+      let ul = document.getElementById("midi-devices");
+      let msg = e.port.state + " " + e.port.type + " " + e.port.name ;
+      li.appendChild(document.createTextNode(msg));
+      ul.appendChild(li);
+      while (ul.childNodes.length >= 5) ul.removeChild(ul.childNodes[0]);
+
+      // Si és input recollir events:
+      if (e.port.type =="input"  && e.port.state == "connected" )  e.port.onmidimessage = getMIDIMessage;
+    }
+
+    function onMIDIFailure(msgErr) {
+      // Posar-ho a la UI
+      let li = document.createElement("li");
+      let ul = document.getElementById("midi-devices");
+      let msg = "Unable to get Web Midi Access: " + msgErr ;
+      li.appendChild(document.createTextNode(msg));
+      ul.appendChild(li);
+      while (ul.childNodes.length >= 5) ul.removeChild(ul.childNodes[0]);
     }
 
     function getMIDIMessage(midiMessage) {
@@ -151,7 +145,16 @@
 
     }
 
-    navigator.requestMIDIAccess().then( onMIDISuccess, onMIDIFailure );
+    // Exemple de Promise (ES6)
+    if ( navigator["requestMIDIAccess"] ) {
+      navigator
+      .requestMIDIAccess()
+      .then( midiAccess => onMIDISuccess(midiAccess) )
+      .catch( msg => onMIDIFailure(msg) );
+    } else {
+      onMIDIFailure("Bad news: This browser don't support Web Midi.");
+    }
+
     
     </script>
 
