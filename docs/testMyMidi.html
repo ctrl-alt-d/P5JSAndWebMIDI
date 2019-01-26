@@ -14,18 +14,21 @@
 
     <div class="container">
 
-      <div class="jumbotron mt-4">
-        <h1 class="display-4">Test my Web Midi Instrument</h1>
-        <p class="lead">Plug & unplug your instrument, play notes.</p>
-        <hr class="my-4">
-        <p>Just for academical purposes.</p>
-        <a class="btn btn-primary btn-lg" href="./" role="button">Learn more</a>
-      </div>
+
     
       <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="jumbotron mt-4">
+              <h1 class="display-4">Test my WebMidi</h1>
+              <p class="lead">Plug & unplug your instrument, play notes.</p>
+              <hr class="my-4">
+              <p>Just for academical purposes. By <a href="https://github.com/ctrl-alt-d">@ctrl-alt-d</a></p>
+              <a class="btn btn-primary btn-lg" href="./" role="button">Learn more</a>
+            </div>
+        </div>
   
-        <div class="col-12">
-          <div class="card">
+        <div class="col-12 col-lg-6">
+          <div class="card  mt-4">
             <div class="card-header">
               Midi Devices:
             </div>
@@ -37,7 +40,7 @@
       </div>
 
       <div class="row">
-        <div class="col-12 mt-4">
+        <div class="col-12 mt-2">
           <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -104,7 +107,11 @@
       while (ul.childNodes.length >= 5) ul.removeChild(ul.childNodes[0]);
 
       // Si és input recollir events:
-      if (e.port.type =="input"  && e.port.state == "connected" )  e.port.onmidimessage = getMIDIMessage;
+      if (e.port.type =="input"  && 
+          e.port.state == "connected" )  {
+        e.port.onmidimessage = getMIDIMessage;
+      }
+
     }
 
     function onMIDIFailure(msgErr) {
@@ -139,9 +146,15 @@
       tr.appendChild(td0);
       tr.appendChild(td1);
       tr.appendChild(td2);
-      t.appendChild(tr);
-      //t.insertBefore(tr, t.firstChild);
-      while (t.childNodes.length >= 5) t.removeChild(t.childNodes[0]);
+      t.insertBefore(tr, t.firstChild);
+
+      //pintol colors random per a que es reconegui cap a on es mou la llista.
+      if (Math.random() * 5 < 1.0) tr.setAttribute("style", "background-color: #FF0000AA;");
+      if (Math.random() * 5 < 1.0) tr.setAttribute("style", "background-color: #00FF00AA;");
+      if (Math.random() * 5 < 1.0) tr.setAttribute("style", "background-color: #0000FFAA;");
+
+      //limito la llista a 10
+      while (t.childNodes.length > 11) t.removeChild(t.childNodes[10]);
 
     }
 

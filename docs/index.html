@@ -82,25 +82,77 @@
 							
 						</textarea>
 				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							## Web MIDI Compatibility
 	
+							![Compatibility](./assets/compatitibiliy.png) <!-- .element height="70%" width="70%" style="border:1px solid;" -->
+
+							https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess#Browser_compatibility<!-- .element style="font-size:50%" -->
+
+							Note:
+
+							Duració 5 minuts.
+
+							* Engegar aplicació test.
+							* Mostrar com arriben els events de les notes.
+
+							
+						</textarea>
+				</section>
+
+				
+
+
 				<section data-markdown>
 					<textarea data-template>
-						## JS
+						#### Java Script, Extensions to the Navigator interface.
 
-						Repassem conceptes de programació:
+						## `requestMIDIAccess`
 
-						* Funció.
-						* Funció delegada.
-						* Callback vs Promise.
+						>When invoked, returns a **Promise** object representing a request for access to MIDI devices on the user's system.						
 
-						
-						
+						_https://www.w3.org/TR/webmidi/_<!-- .element style="font-size:50%;" -->
+
+
 						Note:
 
-						Duració 10 minuts.
+						Duració 2 minuts.
 
 					</textarea>
 				</section>
+
+				<section data-markdown>
+
+					<textarea data-template>
+					## `Promise`
+
+
+					```					
+						navigator
+						.requestMIDIAccess()
+						.then( midiAccess => onMIDISuccess(midiAccess) )
+						.catch( msg => onMIDIFailure(msg) );						
+					```
+					</textarea>
+
+				</section>
+
+				<section data-markdown>
+						<textarea data-template>
+							## JS
+	
+							Hem repassat conceptes de programació:
+	
+							* Funció.
+							* Funció delegada.
+							* Callback vs Promise.
+							
+							Note:
+	
+						</textarea>
+					</section>
 
 				<section data-markdown>
 						<textarea data-template>
