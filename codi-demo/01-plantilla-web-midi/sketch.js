@@ -1,3 +1,4 @@
+
 function setup() {
     inicialitzaWebMidi();
 }
@@ -25,8 +26,14 @@ async function inicialitzaWebMidi() {
 
 function quanArribaUnMissatgeMidi( missatge ) {
     
-    if (missatge.data[0] == 144) {
-        noteOn( missatge.data[1],missatge.data[2] );
+    if (missatge.data[0] == 144 ) {
+        if (missatge.data[2] != 0 ) {
+            noteOn( missatge.data[1], missatge.data[2] );
+        }
+        else{
+            //instruments que envien noteon a velocitat 0
+            noteOff( missatge.data[1] );
+        }        
     } else if (missatge.data[0] == 128) {
         noteOff( missatge.data[1] );
     } else {
