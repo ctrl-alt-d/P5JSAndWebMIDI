@@ -1,19 +1,66 @@
+let notes=[];
+let angle=0;
+let negres=[1,3,6,8,10];
+let started=false;
 
-function setup() {
+function setup()
+{
     inicialitzaWebMidi();
+    createCanvas(windowWidth, windowHeight);
+    windowResized();
+    background(255);
+    angleMode(DEGREES);
 }
 
-/* ---- funcions a desenvolupar ---- */
+function windowResized()
+{
+    resizeCanvas(windowWidth, windowHeight);
+}
+
+function draw()
+{
+    angle += started?0.09:0;
+    
+    push();
+    translate(windowWidth/2,windowHeight/2);
+    rotate(angle);
+    
+    //esborrar
+    let c=color(255,10);
+    fill(c);
+    noStroke();
+    let w = Math.min(windowWidth,windowHeight);
+    arc(0, 0, w, w, 0-85, 5-85,PIE);
+
+    //notes
+    stroke(0,0,0,120);
+    notes.forEach(x =>
+    {
+        nota = x[0]; atac = x[1];
+        let alcada = map(nota, 0, 100 , 0, Math.min(windowWidth,windowHeight)/2 ) - 20;
+        let amplada = map(atac, 0 , 100 ,0, Math.min(windowWidth,windowHeight)/(40) );
+        if (negres.includes(nota%12)) { strokeWeight(3);} else {strokeWeight(1);}        
+        ellipse(0,-alcada,amplada,amplada);
+    });
+    notes = [];
+    pop();
+}
+
+
+/* ---- */
 
 function noteOn( nota, atac ) {
-    console.log("arriba nota", nota, atac);
+
+    //console.log("arriba nota", -alcada);
+    started=true;
+    notes.push( [nota,atac] );
 }
 
 function noteOff( nota ) {
-    console.log("finalitza nota", nota);
+    //console.log("finalitza nota", nota);
 }
 
-/* ---- inicialització del web midi ---- */
+/* ---- */
 
 async function inicialitzaWebMidi() {
 
