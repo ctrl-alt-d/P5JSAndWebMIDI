@@ -1,7 +1,10 @@
 # P5JSAndWebMIDI
 
-* versió alpha: estructura de la presentació -> [https://ctrl-alt-d.github.io/P5JSAndWebMIDI/](https://ctrl-alt-d.github.io/P5JSAndWebMIDI/)
+* PCD2019 Girona - [https://ctrl-alt-d.github.io/P5JSAndWebMIDI/](https://ctrl-alt-d.github.io/P5JSAndWebMIDI/)
 
-ToDo:
+* [Demo's code](codi-demo)
 
-* Preparar demos.
+
+## Hands-on:
+
+[Daniel Shiffman's Multiple Particle Systems + WebMidi](./codi-demo/06-Particles-handson)
